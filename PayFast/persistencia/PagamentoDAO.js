@@ -16,6 +16,10 @@ PagamentoDAO.prototype.buscaPorId = function (id, callback) {
     this._pool.query('select * from pagamentos where id = ?', [id], callback);
 }
 
+PagamentoDAO.prototype.atualiza = function (pagamento, callback) {
+    this._pool.query(`update pagamentos set status = $1 where id = $2`, [pagamento.status, pagamento.id], callback);
+}
+
 module.exports = function () {
     return PagamentoDAO;
 }
