@@ -14,10 +14,12 @@
     "consign": "^0.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.1.1",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "pg": "^7.11.0",
     "restify": "^8.3.3",
     "restify-clients": "^2.6.6",
-    "soap": "^0.28.0"
+    "soap": "^0.28.0",
+    "winston": "^3.2.1"
   }
 }

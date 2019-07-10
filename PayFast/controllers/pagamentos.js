@@ -1,8 +1,30 @@
 const { check, validationResult } = require('express-validator');
+const logger = require('../util/logger');
 
 module.exports = function (app) {
     app.get('/pagamentos', function (req, res) {
         res.send('ok');
+    });
+
+    app.get('/pagamentos/pagamento/:id', function (req, res) {
+        let id = req.params.id;
+        console.log('consultando pagamento: ' + id);
+        logger.info('consultando pagamento: ' + id);
+
+        let pool = app.persistencia.connectionFactory();
+        let pagamentoDao = new app.persistencia.PagamentoDAO(pool);
+
+        pagamentoDao.buscaPorId(id, function (err, result) {
+            if (err) {
+                console.log('erro de leitura: ' + err);
+                res.status(500).send(err);
+                return;
+            }
+
+            console.log('pagamento encontrado: ' + JSON.stringify(result.rows));
+
+            res.json(result.rows);
+        });
     });
 
     app.post('/pagamentos/pagamento',

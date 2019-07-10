@@ -13,7 +13,7 @@ PagamentoDAO.prototype.lista = function (callback) {
 }
 
 PagamentoDAO.prototype.buscaPorId = function (id, callback) {
-    this._pool.query('select * from pagamentos where id = ?', [id], callback);
+    this._pool.query('select * from pagamentos where id = $1', [id], callback);
 }
 
 PagamentoDAO.prototype.atualiza = function (pagamento, callback) {
